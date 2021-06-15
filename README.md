@@ -1,50 +1,63 @@
-# Mirai Console Loader
+# Steam查询助手
 
-模块化、轻量级且支持完全自定义的 [mirai](https://github.com/mamoe/mirai) 加载器。
+> 本插件基于[mirai](https://github.com/mamoe/mirai-console)
+>
+> [![Release](https://img.shields.io/badge/release-v0.1--pre-green)](https://img.shields.io/badge/release-v0.1--pre-green)
 
-欢迎阅读自带脚本的[说明](scripts/README.md)，它将教会你如何`安装插件`，`禁用和启用脚本`，`修改包的更新频道`等基本操作。
 
-## 简介
 
-`iTX Technologies Mirai Console Loader`（下简称`MCL`）采用模块化设计，包含以下几个基础模块：
 
-* `Script` 脚本执行模块，用于加载和执行脚本，`MCL`的主要功能均由脚本实现。脚本执行有各个阶段，详见注释。
-* `Config` 配置文件模块，用于配置的持久化。
-* `Downloader` 下载器模块，用于下载文件，并实时返回进度。
-* `Logger` 日志模块，用于向控制台输出日志。
 
-## 启动`MCL`
+## 概览
 
-1. 安装 Java 运行时（版本必须 >= 11）
-1. 从 [Releases](https://github.com/iTXTech/mirai-console-loader/releases) 下载最新版本的`MCL`
-1. 解压到某处
-1. 在命令行中执行`.\mcl`以启动`MCL`
+**这是一个简单粗暴的steam查询插件，可以允许用户通过mirai指令来查询一个steam商店一个游戏的价格和简介**
 
-## `Mirai Repo` 列表
 
-* [Gitee](https://gitee.com/peratx/mirai-repo/raw/master) - **默认**，如要镜像请完整拷贝该仓库文件即可
-* [GitHub](https://github.com/project-mirai/mirai-repo-mirror) - 位于`project-mirai`的镜像，首选`Gitee`
 
-## `Maven Repo` 列表
+目前本插件强制查询国区和RMB，查询其他区域和其他币种会在后续加入，现在就有需求的可以直接改源代码。
 
-* [Bintray - Him188moe](https://dl.bintray.com/him188moe/mirai) - `mamoe` 官方仓库，仅包含`mirai`相关包
-* [JCenter](https://jcenter.bintray.com/) - `mamoe` 官方仓库会自动同步到 `JCenter`
-* [Aliyun](https://maven.aliyun.com/repository/public) - **默认**，阿里云`JCenter`镜像，国内访问速度快
-* [HuaweiCloud](https://mirrors.huaweicloud.com/repository/maven) - 华为云`JCenter`镜像，阿里云不可用时的备选方案
 
-## 开源许可证
 
-    Copyright (C) 2020-2021 iTX Technologies
+![image-20210615135858123](C:\Users\pmx99\AppData\Roaming\Typora\typora-user-images\image-20210615135858123.png)
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+## 指令
+
+~~由于.st指令与骰娘机器人冲突，而斜杠会触发tim用户的快速黄豆人表情，这里使用逗号~~
+
+| 指令                | 效果             |
+| ------------------- | ---------------- |
+| ,steam查询 [游戏名] | 列出当前游戏信息 |
+| ，steam查询[游戏名] | 列出当前游戏信息 |
+
+
+
+## 安装
+
+1. 按照[mirai](https://github.com/mamoe/mirai-console)的步骤安装mirai机器人
+2. 从[发布页](https://github.com/Pmx990/Mirai-Steam-Plugin/releases/tag/v0.1)下载jar文件
+3. 将jar文件置入mirai安装文件夹下的plugins文件夹
+
+
+
+## TODO 和 其他
+
+* 加入更多功能，目前暂定的有
+
+  1. 自定义货币单位
+  2. 自定义查询区域
+  3. 根据要求列出api中其他信息
+
+* 目前还在研究的功能：
+
+  * 加入历史价格/最低价格对比，由于steam api并不提供此功能，如何解决还在研究中。刚开始的想法是去查询steamdb，但这种行为是被steamdb明令禁止的，所以当前还在寻找更好的解决方案。
+
+* 优化代码，当前很多网址都还是hard coded在代码里的，可以说是trash code中的trash code.~~来只是一时兴起没想这么多~~
+
+  
+
+
+
