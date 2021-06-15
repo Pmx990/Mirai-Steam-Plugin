@@ -18,7 +18,6 @@
 
 
 
-![image-20210615135858123](C:\Users\pmx99\AppData\Roaming\Typora\typora-user-images\image-20210615135858123.png)
 
 
 
