@@ -11,7 +11,7 @@ import java.io.IOException;
 public class SteamIdProcess
     {
         private static final String SEARCH_LINK = "https://store.steampowered.com/search/?term=";
-        private static final String INFO_LINK = "http://store.steampowered.com/api/appdetails?appids=";
+        private static final String INFO_LINK = "https://store.steampowered.com/api/appdetails?appids=";
         private static final String INFO_FIX = "&l=schinese&cc=CN";
         protected String SearchId(String search)
         {
