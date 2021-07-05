@@ -1,6 +1,6 @@
 package dev.horizonlight.miraiplugin.SteamChecker;
 import com.google.gson.Gson;
-import dev.horizonlight.miraiplugin.SteamChecker.pojo.Root;
+import dev.horizonlight.miraiplugin.SteamChecker.Pojo.Root;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.seimicrawler.xpath.JXDocument;
@@ -12,7 +12,12 @@ public class SteamIdProcess
     {
         private static final String SEARCH_LINK = "https://store.steampowered.com/search/?term=";
         private static final String INFO_LINK = "https://store.steampowered.com/api/appdetails?appids=";
-        private static final String INFO_FIX = "&l=schinese&cc=CN";
+        private String INFO_FIX = "&l=schinese&cc=CN";
+
+        protected void SetCurrency(String currency){
+            INFO_FIX = "&l=schinese&cc="+currency;
+        }
+
         protected String SearchId(String search)
         {
             try

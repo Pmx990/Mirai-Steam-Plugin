@@ -1,7 +1,9 @@
 package dev.horizonlight.miraiplugin;
 
 import dev.horizonlight.miraiplugin.SteamChecker.SCController;
-import dev.horizonlight.miraiplugin.SteamChecker.pojo.Root;
+import dev.horizonlight.miraiplugin.SteamChecker.Pojo.Root;
+import dev.horizonlight.miraiplugin.SteamChecker.Setting.Dao.FileController;
+import dev.horizonlight.miraiplugin.SteamChecker.Setting.SettingController;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
 import net.mamoe.mirai.event.GlobalEventChannel;
@@ -26,9 +28,9 @@ public final class JavaPluginMain extends JavaPlugin {
     public void onEnable() {
         getLogger().info("magic spear插件启动");
         Listener listener = GlobalEventChannel.INSTANCE.subscribeAlways(MessageEvent.class, g -> {
-            //getLogger().info(g.getMessage().contentToString());
             RunPrefix(g.getMessage().contentToString(), g);
         });
+        FileController.getInstance().UpdateData();
     }
 
     private void RunPrefix(String input, MessageEvent a) {
@@ -36,7 +38,7 @@ public final class JavaPluginMain extends JavaPlugin {
         input = input.replaceAll("，", ",");
 
         if (input.startsWith(",steam查询")) {
-            SCController sc = new SCController(input);
+            SCController sc = new SCController(input,String.valueOf(a.getSubject().getId()));
             if (sc.TryGetResult()) {
                 Root root = sc.GetResult();
                 StringBuilder sb = new StringBuilder();
@@ -68,7 +70,12 @@ public final class JavaPluginMain extends JavaPlugin {
             } else {
                 a.getSubject().sendMessage("无指定结果，请尝试使用英文搜索");
             }
-        }
+        }else if(input.startsWith(",steam设置货币")){
+                SettingController cc = new SettingController();
+                String result = cc.ChangeCurrency(input, String.valueOf(a.getSubject().getId()));
+                a.getSubject().sendMessage("已将区域(币种)设为 "+result);
+            }
+
     }
 
     private String StringValidator(String input) {
